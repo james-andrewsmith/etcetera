@@ -238,9 +238,10 @@
         Exception constructException(IRestResponse<EtcdResponse> response)
         {
             var msg = new StringBuilder();
-            msg.AppendFormat("Server: '{0}'", _client.BaseUrl);
-            msg.AppendFormat("- Path: '{0}'", response.Request.Resource);
-            msg.AppendFormat("- Message: '{0}'", response.ErrorMessage);
+            msg.AppendFormat("Server:     '{0}'\n", _client.BaseUrl);
+            msg.AppendFormat("- Path:     '{0}'\n", response.Request.Resource);
+            msg.AppendFormat("- Message:  '{0}'\n", response.ErrorMessage);
+            msg.AppendFormat("- Response: '{0}'\n", response.Content);
 
             return new EtceteraException(msg.ToString(), response.ErrorException);
         }
